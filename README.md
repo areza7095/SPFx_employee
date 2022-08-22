@@ -15,13 +15,6 @@ extensions:
 ---
 # SharePoint Framework sample using @pnp/js and ReactJS
 
-## Summary
-
-This solution builds off of the solution [react-async-await-sp-pnp-js](./react-async-await-sp-pnp-js) submitted by Jose Quinto ([@jquintozamora](https://twitter.com/jquintozamora) , [blog.josequinto.com](https://blog.josequinto.com))
-
-This implementaiton refactors to take aspects out and utilize and showcase PnPjs Version 3.
-
-![React-pnp-js-sample](./assets/react-pnp-js-sample.png)
 
 ## Compatibility
 
