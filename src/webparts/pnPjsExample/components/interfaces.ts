@@ -1,20 +1,21 @@
 // create File item to work with it internally
-export interface IFile {
-  ID: number;
-  Nama: string;
-  Image: string;
-  Alamat: string;
+export interface IFileEmployee{
+  employee_id: number;
+  name: string;
+  img_employee: string;
+  address: string;
+  
 }
 
-// create PnP JS response interface for File
-export interface IResponseFile {
-  Length: number;
-}
+
 
 // create PnP JS response interface for Item
-export interface IResponseItem {
+export interface IResponseEmployee {
   id_employee: number;
-  Nama: string;
-  Title: string;
+  name: string;
   img_employee: string;
+  address: string;
+  
 }
+
+

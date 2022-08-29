@@ -1,70 +1,68 @@
 // create File item to work with it internally
-export interface IFile {
+export interface IFileEmployee{
     ID: number;
     employee_id: number;
-    Nama: string;
-    Image: string;
-    Alamat: string;
-    Email: string;
-    no_hp: string;
-    alamat_lengkap: string;
-    jenis_kelamin: string;
-    tanggal_lahir: string;
-    tempat_lahir: string;
-  }
-  
-
-  
-  // create PnP JS response interface for Item
-  export interface IResponseItem {
-    ID: number;
-    id_employee: number;
-    Nama: string;
-    Title: string;
+    name: string;
     img_employee: string;
+    address: string;
     email: string;
     no_hp: string;
-    alamat_lengkap: string;
-    jenis_kelamin: string;
-    tanggal_lahir: string;
-    tempat_lahir: string;
+    gender: string;
+    birth_date: string;
+    place_of_birth: string;
+  }
+  
+
+  
+  // create PnP JS response interface for Item
+  export interface IResponseEmployee {
+    ID: number;
+    id_employee: number;
+    name: string;
+    img_employee: string;
+    address: string;
+    email: string;
+    no_hp: string;
+    gender: string;
+    birth_date: string;
+    place_of_birth: string;
   }
 
   // create File item to work with it internally
-  export interface IFilePekerjaan {
-    nama_instansi: string;
-    posisi: string;
-    periode: string;
+  export interface IFileExperiences {
+    agency_name: string;
+    position: string;
+    period: string;
     id_employeeId: number;
   }
   
   
   
   // create PnP JS response interface for Item
-  export interface IResponseItemPekerjaan {
-    nama_instansi: string;
-    posisi: string;
-    periode: string;
+  export interface IResponseItemExperiences {
+    agency_name: string;
+    position: string;
+    period: string;
     id_employeeId: number;
   }
 
 
   // create File item to work with it internally
-export interface IFilePendidikan {
+export interface IFileEducation {
   id_employeeId: string;
-  jenjang_pendidikan: string;
-  nama_sekolah: string;
-  tahun_masuk: number;
-  tahun_lulus: number;
+  educational_stage: string;
+  school_name: string;
+  year_of_entry: number;
+  graduation_year: number;
 }
 
 
 
 // create PnP JS response interface for Item
-export interface IResponseItemPendidikan {
+export interface IResponseItemEducation {
   id_employeeId: string;
-  jenjang_pendidikan: string;
-  nama_sekolah: string;
-  tahun_masuk: number;
-  tahun_lulus: number;
+  educational_stage: string;
+  school_name: string;
+  year_of_entry: number;
+  graduation_year: number;
 }

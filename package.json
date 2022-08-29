@@ -9,6 +9,8 @@
     "test": "gulp test"
   },
   "dependencies": {
+    "@fluentui/react": "^8.92.1",
+    "@microsoft/generator-sharepoint": "^1.15.2",
     "@microsoft/sp-core-library": "1.15.2",
     "@microsoft/sp-lodash-subset": "1.15.2",
     "@microsoft/sp-office-ui-fabric-core": "1.15.2",
@@ -16,7 +18,8 @@
     "@microsoft/sp-webpart-base": "1.15.2",
     "@pnp/logging": "^3.5.1",
     "@pnp/sp": "^3.5.1",
-    "antd": "^4.22.4",
+    "@pnp/spfx-controls-react": "3.10.0",
+    "antd": "^4.22.8",
     "mdb-angular-ui-kit": "^2.3.0",
     "mdb-ui-kit": "^4.4.0",
     "moment": "^2.29.4",

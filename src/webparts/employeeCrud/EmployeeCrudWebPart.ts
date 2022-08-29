@@ -8,25 +8,27 @@ import {
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import { IReadonlyTheme } from '@microsoft/sp-component-base';
 
-import * as strings from 'EmployeeDetailWebPartStrings';
-import EmployeeDetail from './components/EmployeeDetail';
-import { IEmployeeDetailProps } from './components/IEmployeeDetailProps';
+import * as strings from 'EmployeeCrudWebPartStrings';
+import EmployeeCrud from './components/EmployeeCrud';
+import { IEmployeeCrudProps } from './components/IEmployeeCrudProps';
+
 
 // PNP
 import { getSP } from './pnpjsConfig';
 
-export interface IEmployeeDetailWebPartProps {
+
+export interface IEmployeeCrudWebPartProps {
   description: string;
 }
 
-export default class EmployeeDetailWebPart extends BaseClientSideWebPart<IEmployeeDetailWebPartProps> {
+export default class EmployeeCrudWebPart extends BaseClientSideWebPart<IEmployeeCrudWebPartProps> {
 
   private _isDarkTheme: boolean = false;
   private _environmentMessage: string = '';
 
   public render(): void {
-    const element: React.ReactElement<IEmployeeDetailProps> = React.createElement(
-      EmployeeDetail,
+    const element: React.ReactElement<IEmployeeCrudProps> = React.createElement(
+      EmployeeCrud,
       {
         description: this.properties.description,
         isDarkTheme: this._isDarkTheme,

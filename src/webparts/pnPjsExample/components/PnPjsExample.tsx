@@ -3,7 +3,8 @@ import styles from './PnPjsExample.module.scss';
 import { IPnPjsExampleProps } from './IPnPjsExampleProps';
 
 // import interfaces
-import { IFile, IResponseItem } from "./interfaces";
+import { IFileEmployee, IResponseEmployee } from "./interfaces";
+
 
 // import pnp
 import { Caching } from "@pnp/queryable";
@@ -23,28 +24,26 @@ export interface IAsyncAwaitPnPJsProps {
 }
 
 export interface IIPnPjsExampleState {
-  items: IFile[];
+  itemsEmployee: IFileEmployee[];
   errors: string[];
 }
 
 export default class PnPjsExample extends React.Component<IPnPjsExampleProps, IIPnPjsExampleState> {
-  private LOG_SOURCE = "🅿PnPjsExample";
-  private LIBRARY_NAME = "Daftar_karyawan";
+  private listEmployee = "list_employee";
   private _sp: SPFI;
 
   constructor(props: IPnPjsExampleProps) {
     super(props);
     // set initial state
     this.state = {
-      items: [],
+      itemsEmployee: [],
       errors: []
     };
     this._sp = getSP();
   }
 
   public componentDidMount(): void {
-    // read all file sizes from Documents library
-    this._readAllFilesSize();
+    this._listEmployee();
   }
 
   public render(): React.ReactElement<IAsyncAwaitPnPJsProps> {
@@ -52,48 +51,27 @@ export default class PnPjsExample extends React.Component<IPnPjsExampleProps, II
     // get url tenant
     var tenantUrl = window.location.protocol + "//" + window.location.host;
     // console.log('tenant url', tenantUrl)
-
     try {
 
       return (
         <>
         <Row>
-        {this.state.items.map((item, idx) => {
+        {this.state.itemsEmployee.map((item, idx) => {
             return (
               <Col span={8}>
                 <Card
                       hoverable
                       style={{ width: 180 }}
-                      cover={<img alt="example" src={tenantUrl + item.Image} key={idx} />}
+                      cover={<img alt="example" src={tenantUrl + item.img_employee} key={idx} />} 
+                      className='cardProfile'
                     >
-                      <Meta title={item.Nama} description={item.ID} />
+                      <Meta title={item.name} description={item.employee_id} />
                     </Card>
               </Col>
             );
           })}
         </Row>
         </>
-        
-        // <div>
-        //   <table width="100%">
-        //     <tr>
-        //       <td><strong>ID</strong></td>
-        //       <td><strong>Nama</strong></td>
-        //       <td><strong>Alamat</strong></td>
-        //       <td><strong>Foto</strong></td>
-        //     </tr>
-        //     {this.state.items.map((item, idx) => {
-        //       return (
-        //         <tr key={idx}>
-        //           <td>{item.ID}</td>
-        //            <td>{item.Nama}</td>
-        //            <td>{item.Alamat}</td>
-        //            <td><img src={tenantUrl + item.Image} alt="" className={styles.imgProfile}/></td>
-        //         </tr>
-        //       );
-        //     })}
-        //   </table>
-        // </div >
       );
     } catch (err) {
       console.log(err);
@@ -101,7 +79,7 @@ export default class PnPjsExample extends React.Component<IPnPjsExampleProps, II
     return null;
   }
 
-  private _readAllFilesSize = async (): Promise<void> => {
+ private _listEmployee = async (): Promise<void> => {
     try {
       // do PnP JS query, some notes:
       //   - .expand() method will retrive Item.File item but only Length property
@@ -114,32 +92,32 @@ export default class PnPjsExample extends React.Component<IPnPjsExampleProps, II
       //Creating a new sp object to include caching behavior. This way our original object is unchanged.
       const spCache = spfi(this._sp).using(Caching({ store: "session" }));
 
-      const response: IResponseItem[] = await spCache.web.lists
-        .getByTitle(this.LIBRARY_NAME)
+      const response: IResponseEmployee[] = await spCache.web.lists
+        .getByTitle(this.listEmployee)
         .items
-        .select("id_employee", "Nama", "Title", "img_employee")();
-      console.log('respone', response)
+        .select("ID", "id_employee", "name", "address", "img_employee", "email", "no_hp", "gender", "birth_date", "place_of_birth" )()
+
+      console.log('respone employee: ', response)
 
       // .expand()();
       // use map to convert IResponseItem[] into our internal object IFile[]
-      const items: IFile[] = response.map((item: IResponseItem) => {
-
+      const itemsEmployee: IFileEmployee[] = response.map((item: IResponseEmployee) => {
         // console.log('image url', JSON.parse(item.img_employee)['serverRelativeUrl'])
-
+        // console.log(item.img_employee) //null
         return {
-          ID: item.id_employee,
-          Nama: item.Nama,
-          Alamat: item.Title,
-          Image: JSON.parse(item.img_employee)['serverRelativeUrl']
-
+          employee_id: item.id_employee,
+          name: item.name,
+          address: item.address,
+          img_employee: JSON.parse(item.img_employee)['serverRelativeUrl'],
         };
 
       });
 
       // Add the items to the state
-      this.setState({ items });
+      this.setState({ itemsEmployee });
     } catch (err) {
       console.log('error: ', err)
     }
   }
+
 }
