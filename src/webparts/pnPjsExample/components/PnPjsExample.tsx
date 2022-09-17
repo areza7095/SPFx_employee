@@ -90,7 +90,7 @@ export default class PnPjsExample extends React.Component<IPnPjsExampleProps, II
       //this._sp.using(Caching("session"));
 
       //Creating a new sp object to include caching behavior. This way our original object is unchanged.
-      const spCache = spfi(this._sp).using(Caching({ store: "session" }));
+      const spCache = spfi(this._sp);
 
       const response: IResponseEmployee[] = await spCache.web.lists
         .getByTitle(this.listEmployee)

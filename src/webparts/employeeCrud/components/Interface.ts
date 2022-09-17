@@ -1,4 +1,19 @@
 export interface IDetailsListCompactExampleItem {
+  ID: number;
+  employee_id: number;
+  name: string;
+  address: string;
+  email: string;
+  no_hp: string;
+  gender: string;
+  birth_date: string;
+  place_of_birth: string;
+}
+
+// create File item to work with it internally
+export interface IEditEmployee {
+  ID: number;
+
   employee_id: number;
   name: string;
   address: string;
@@ -11,9 +26,23 @@ export interface IDetailsListCompactExampleItem {
 
 
 
+// create PnP JS response interface for Item
+export interface IResponseEditEmployee {
+  ID: number;
+  id_employee: number;
+  name: string;
+  address: string;
+  email: string;
+  no_hp: string;
+  gender: string;
+  birth_date: string;
+  place_of_birth: string;
+}
+
+
 // create File item to work with it internally
 export interface IFileEmployee {
-  // ID: number;
+  ID: number;
 
   employee_id: number;
   name: string;
@@ -29,7 +58,7 @@ export interface IFileEmployee {
 
 // create PnP JS response interface for Item
 export interface IResponseEmployee {
-  // ID: number;
+  ID: number;
   id_employee: number;
   name: string;
   address: string;
